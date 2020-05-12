@@ -26,6 +26,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 
+import com.xl.graphics.Paint.Style;
+
 /**
  * The Paint class holds the style and color information about how to draw
  * geometries, text and bitmaps.
@@ -42,6 +44,8 @@ public class Paint {
 	float mStrokeMiter;
 	Align mTextAlign;
 	Font mFont;
+	
+	
 	
 
     private static final Object sCacheLock = new Object();
@@ -432,7 +436,11 @@ public class Paint {
      * Create a new paint with default settings.
      */
     public Paint() {
-        this(0);
+        this.mStyle = Style.FILL;
+        this.mTextAlign = Align.LEFT;
+        this.mStrokeWidth = 1;
+        this.mTextSize = 14;
+        this.mColor = Color.BLACK;
     }
 
     /**
@@ -441,11 +449,11 @@ public class Paint {
      *
      * @param flags initial flag bits, as if they were passed via setFlags().
      */
-    public Paint(int flags) {
-       
-    
-       
-    }
+//    public Paint(int flags) {
+//       
+//    
+//       
+//    }
 
     /**
      * Create a new paint, initialized with the attributes in the specified
@@ -567,6 +575,7 @@ public class Paint {
      */
     public void setStrokeWidth(float width) {
         this.mStrokeWidth = width;
+        
     }
 
     /**
@@ -836,6 +845,16 @@ public class Paint {
         this.mFont = typeface.mFont;
         return typeface;
     }
+
+	public void setAntiAlias(boolean b) {
+		this.mAntiAlias = b;
+		
+	}
+
+	public void setStyle(Style stroke) {
+		
+		this.mStyle = stroke;
+	}
 
 
 

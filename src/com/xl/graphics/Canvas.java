@@ -1,8 +1,11 @@
 package com.xl.graphics;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Shape;
+import java.awt.Stroke;
 import java.awt.image.ImageObserver;
 
 public class Canvas {
@@ -51,7 +54,7 @@ public class Canvas {
     public void drawColor( int color) {
     	Color c = new Color((color>>16)&0xff, (color>>8)&0xff, (color)&0xff, (color>>24)&0xff);
         graphics2d.setColor(c);
-        graphics2d.drawRect(0, 0, 1080, 1080);
+        graphics2d.fillRect(0, 0, 1080, 1080);
     }
 
  /**
@@ -64,7 +67,23 @@ public class Canvas {
      * @param paint The paint used to draw the circle
      */
     public void drawCircle(float cx, float cy, float radius,  Paint paint) {
-        graphics2d.fillOval((int)(cx-radius), (int)(cy-radius), (int)(radius*2), (int)radius*2);
+    	graphics2d.setColor(paint.mColor);
+    	
+    	
+    	if(paint.mStyle == Paint.Style.FILL){
+    		graphics2d.fillOval((int)(cx-radius), (int)(cy-radius), (int)(radius*2), (int)radius*2);
+    	}
+    	else if(paint.mStyle == Paint.Style.STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.drawOval((int)(cx-radius), (int)(cy-radius), (int)(radius*2), (int)radius*2);
+    	}
+    	else if(paint.mStyle == Paint.Style.FILL_AND_STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.fillOval((int)(cx-radius), (int)(cy-radius), (int)(radius*2), (int)(radius*2));
+    		graphics2d.drawOval((int)(cx-radius), (int)(cy-radius), (int)(radius*2), (int)(radius*2));
+    	}
+        
+    	
     }
 
   /**
@@ -83,7 +102,9 @@ public class Canvas {
      */
     public void drawLine(float startX, float startY, float stopX, float stopY,
              Paint paint) {
+    	
     	graphics2d.setColor(paint.mColor);
+    	graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
         graphics2d.drawLine((int)startX, (int)startY, (int)stopX, (int)stopY);
     }
 
@@ -93,7 +114,19 @@ public class Canvas {
      */
     public void drawOval(float left, float top, float right, float bottom,  Paint paint) {
     	graphics2d.setColor(paint.mColor);
-    	graphics2d.drawOval((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    	if(paint.mStyle == Paint.Style.FILL){
+    		graphics2d.fillOval((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    	}
+    	else if(paint.mStyle == Paint.Style.STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.drawOval((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    	}
+    	else if(paint.mStyle == Paint.Style.FILL_AND_STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.drawOval((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    		graphics2d.fillOval((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    	}
+    	
     
     }
 
@@ -125,7 +158,20 @@ public class Canvas {
      * @param paint The paint used to draw the rectangle
      */
     public void drawRect( Rect r,  Paint paint) {
-        graphics2d.drawRect((int)r.left, (int)r.top, (int)r.width(), (int)r.height());
+    	
+        
+        if(paint.mStyle == Paint.Style.FILL){
+        	graphics2d.fillRect((int)r.left, (int)r.top, (int)r.width(), (int)r.height());
+    	}
+    	else if(paint.mStyle == Paint.Style.STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.drawRect((int)r.left, (int)r.top, (int)r.width(), (int)r.height());
+    	}
+    	else if(paint.mStyle == Paint.Style.FILL_AND_STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.fillRect((int)r.left, (int)r.top, (int)r.width(), (int)r.height());
+    		graphics2d.drawRect((int)r.left, (int)r.top, (int)r.width(), (int)r.height());
+    	}
     }
 
   /**
@@ -139,7 +185,19 @@ public class Canvas {
      * @param paint The paint used to draw the rect
      */
     public void drawRect(float left, float top, float right, float bottom,  Paint paint) {
-        graphics2d.drawRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+        
+        if(paint.mStyle == Paint.Style.FILL){
+        	graphics2d.fillRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    	}
+    	else if(paint.mStyle == Paint.Style.STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.drawRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    	}
+    	else if(paint.mStyle == Paint.Style.FILL_AND_STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.drawRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    		graphics2d.fillRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+    	}
     }
 
     /**
@@ -164,7 +222,19 @@ public class Canvas {
      * @param paint The paint used to draw the roundRect
      */
     public void drawRoundRect( RectF rect, float rx, float ry,  Paint paint) {
-        graphics2d.fillRoundRect((int)rect.left, (int)rect.top, (int)rect.width(), (int)rect.height(), (int)rx, (int)rx);
+    	 if(paint.mStyle == Paint.Style.FILL){
+    		 graphics2d.fillRoundRect((int)rect.left, (int)rect.top, (int)rect.width(), (int)rect.height(), (int)rx, (int)rx);
+     	}
+     	else if(paint.mStyle == Paint.Style.STROKE){
+     		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+     		graphics2d.drawRoundRect((int)rect.left, (int)rect.top, (int)rect.width(), (int)rect.height(), (int)rx, (int)rx);
+     	}
+     	else if(paint.mStyle == Paint.Style.FILL_AND_STROKE){
+     		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+     		graphics2d.fillRoundRect((int)rect.left, (int)rect.top, (int)rect.width(), (int)rect.height(), (int)rx, (int)rx);
+     		graphics2d.drawRoundRect((int)rect.left, (int)rect.top, (int)rect.width(), (int)rect.height(), (int)rx, (int)rx);
+     	}
+        
     }
 
  /**
@@ -177,7 +247,19 @@ public class Canvas {
      */
     public void drawRoundRect(float left, float top, float right, float bottom, float rx, float ry,
              Paint paint) {
-        graphics2d.fillRoundRect((int)left, (int)top, (int)(right-left), (int)(bottom-top), (int)rx, (int)rx);
+        
+        if(paint.mStyle == Paint.Style.FILL){
+        	graphics2d.fillRoundRect((int)left, (int)top, (int)(right-left), (int)(bottom-top), (int)rx, (int)rx);
+    	}
+    	else if(paint.mStyle == Paint.Style.STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.drawRoundRect((int)left, (int)top, (int)(right-left), (int)(bottom-top), (int)rx, (int)rx);
+    	}
+    	else if(paint.mStyle == Paint.Style.FILL_AND_STROKE){
+    		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+    		graphics2d.fillRoundRect((int)left, (int)top, (int)(right-left), (int)(bottom-top), (int)rx, (int)rx);
+    		graphics2d.drawRoundRect((int)left, (int)top, (int)(right-left), (int)(bottom-top), (int)rx, (int)rx);
+    	}
     }
 
    /**
