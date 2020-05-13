@@ -1,5 +1,16 @@
 package android.content;
 
-public class Context {
+import java.io.File;
 
+import android.content.res.Resources;
+
+public interface Context {
+	  public abstract File getFilesDir();
+	  public abstract File getCacheDir();
+	  public abstract File getExternalCacheDir();
+	  public abstract File[] getExternalMediaDirs();
+	  public abstract String[] fileList();
+	  public abstract File getDir(String name, int mode);
+	  public abstract Resources getResources();
+//	  public abstract void startActivity( Intent intent);
 }

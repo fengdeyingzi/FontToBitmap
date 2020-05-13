@@ -124,8 +124,9 @@ public class CirColorView extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		// TODO: Implement this method
+		
 		super.onDraw(canvas);
+		System.out.println("视图宽高："+getWidth()+" "+getHeight());
 		int width = Math.min(getWidth(),getHeight());
 		//圆环
 	if(isFocus)

@@ -140,7 +140,7 @@ if(getLineSize(x, y, e.getX(), e.getY())<100){
 		com.xl.graphics.Paint p = new com.xl.graphics.Paint();
 		graphics2d.setFont(font);
 //		graphics2d.drawString("this is draw test", 0, 20);
-		Bitmap bitmap = BitmapFactory.decodeFile("E:\\Picture\\动图大师\\icon.png");
+//		Bitmap bitmap = BitmapFactory.decodeFile("E:\\Picture\\动图大师\\icon.png");
 		Canvas canvas = new Canvas(graphics2d);
 		Rect src = new Rect(0,0,300,30);
 		Rect dst = new Rect(0,0,144,144);
