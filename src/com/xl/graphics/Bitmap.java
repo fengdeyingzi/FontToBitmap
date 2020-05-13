@@ -1,6 +1,12 @@
 package com.xl.graphics;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import javax.imageio.ImageIO;
 
 public class Bitmap {
 	
@@ -13,6 +19,37 @@ public class Bitmap {
 		 Bitmap bitmap = new Bitmap(new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR));
 	     return bitmap;
 	 }
+	 
+	 public boolean compress(CompressFormat format, int quality, OutputStream stream) {
+		//首先创建一个BufferedImage变量，因为ImageIO写图片用到了BufferedImage变量。
+	        BufferedImage bi = this.image;
+	        FileOutputStream stream2;
+	        if(stream instanceof FileOutputStream){
+	        	stream2 = ((FileOutputStream)stream);
+	        }
+	        switch (format) {
+			case JPEG:
+				try {
+					ImageIO.write(bi,"jpg",stream);
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
+				
+				break;
+			case PNG:
+				try {
+					ImageIO.write(bi,"png",stream);
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
+				break;
+			default:
+				break;
+			}
+	        return false;
+	    }
     
     
     public int getWidth(){
@@ -137,5 +174,16 @@ public class Bitmap {
         static Config nativeToConfig(int ni) {
             return sConfigs[ni];
         }
+    }
+    
+    public enum CompressFormat {
+        JPEG    (0),
+        PNG     (1),
+        WEBP    (2);
+
+        CompressFormat(int nativeInt) {
+            this.nativeInt = nativeInt;
+        }
+        final int nativeInt;
     }
 }
