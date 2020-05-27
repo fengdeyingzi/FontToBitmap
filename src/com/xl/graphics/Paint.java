@@ -850,6 +850,10 @@ public class Paint {
 		this.mAntiAlias = b;
 		
 	}
+	
+	public boolean isAntiAlias(){
+		return this.mAntiAlias;
+	}
 
 	public void setStyle(Style stroke) {
 		

@@ -8,12 +8,16 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.xl.graphics.Bitmap;
+import com.xl.graphics.BitmapFactory;
+import com.xl.util.ImageUtil;
 import com.xl.view.CirColorView;
 import com.xl.view.DrawView;
 import com.xl.view.TestView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 public class DrawWindow extends JFrame{
 	DrawView drawView;
@@ -53,6 +57,10 @@ public class DrawWindow extends JFrame{
 		colorView.setMaximumSize(new Dimension(128, 128));
 		getContentPane().add(colorView);
 		getContentPane().add(testView);
+		Toast.makeText(activity, "测试toast").display();
+		
+		Bitmap bitmap = BitmapFactory.decodeFile("D:\\1.png");
+		ImageUtil.zoomBitmap(bitmap, 1024,2048, "D:\\11.png");
 		
 	}
 
