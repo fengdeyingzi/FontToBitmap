@@ -8,12 +8,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.xl.graphics.Bitmap;
-import com.xl.graphics.Bitmap.CompressFormat;
-import com.xl.graphics.BitmapFactory;
-import com.xl.graphics.Canvas;
-import com.xl.graphics.Paint;
-import com.xl.graphics.Rect;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Bitmap.CompressFormat;
 
 public class ImageUtil {
 	

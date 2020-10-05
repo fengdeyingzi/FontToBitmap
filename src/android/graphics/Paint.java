@@ -1,4 +1,4 @@
-package com.xl.graphics;
+package android.graphics;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 
-import com.xl.graphics.Paint.Style;
+import android.graphics.Paint.Style;
 
 /**
  * The Paint class holds the style and color information about how to draw

@@ -3,13 +3,13 @@ package com.xl.view;
 
 import android.view.View;
 
-import com.xl.graphics.Canvas;
-import com.xl.graphics.Paint;
-import com.xl.graphics.Rect;
 import com.xl.util.ColorUtil;
 import com.xl.util.DisplayUtil;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.KeyEvent;
 //import android.graphics.Canvas;
 //import com.xl.game.tool.DisplayUtil;

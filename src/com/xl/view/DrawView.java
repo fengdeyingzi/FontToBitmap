@@ -19,11 +19,11 @@ import java.io.File;
 
 import javax.swing.JComponent;
 
-import com.xl.graphics.Bitmap;
-import com.xl.graphics.BitmapFactory;
-import com.xl.graphics.Canvas;
-import com.xl.graphics.Rect;
-import com.xl.graphics.Typeface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 
 
 
@@ -137,7 +137,7 @@ if(getLineSize(x, y, e.getX(), e.getY())<100){
 		
 		//画文字
 		Font font =  new Font("", Font.PLAIN, 20); // 创建字体对象)
-		com.xl.graphics.Paint p = new com.xl.graphics.Paint();
+		android.graphics.Paint p = new android.graphics.Paint();
 		graphics2d.setFont(font);
 //		graphics2d.drawString("this is draw test", 0, 20);
 //		Bitmap bitmap = BitmapFactory.decodeFile("E:\\Picture\\动图大师\\icon.png");

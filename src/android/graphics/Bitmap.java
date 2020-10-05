@@ -1,4 +1,4 @@
-package com.xl.graphics;
+package android.graphics;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

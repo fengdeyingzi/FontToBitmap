@@ -11,10 +11,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
 
-import com.xl.graphics.Canvas;
-import com.xl.graphics.Rect;
-
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 
 public class View extends JComponent{
 	private Context mContext;

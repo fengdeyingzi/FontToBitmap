@@ -1,4 +1,4 @@
-package com.xl.graphics;
+package android.graphics;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -181,6 +181,7 @@ public class Canvas {
      * @param paint The paint used to draw the rectangle
      */
     public void drawRect( Rect r,  Paint paint) {
+    	graphics2d.setColor(paint.mColor);
     	if(paint.isAntiAlias()){
     		graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     	}
@@ -213,6 +214,7 @@ public class Canvas {
      * @param paint The paint used to draw the rect
      */
     public void drawRect(float left, float top, float right, float bottom,  Paint paint) {
+    	graphics2d.setColor(paint.mColor);
     	if(paint.isAntiAlias()){
     		graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     	}
@@ -255,6 +257,7 @@ public class Canvas {
      * @param paint The paint used to draw the roundRect
      */
     public void drawRoundRect( RectF rect, float rx, float ry,  Paint paint) {
+    	graphics2d.setColor(paint.mColor);
     	if(paint.isAntiAlias()){
     		graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     	}
@@ -286,6 +289,7 @@ public class Canvas {
      */
     public void drawRoundRect(float left, float top, float right, float bottom, float rx, float ry,
              Paint paint) {
+    	graphics2d.setColor(paint.mColor);
     	if(paint.isAntiAlias()){
     		graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     	}
@@ -329,6 +333,30 @@ public class Canvas {
 
 public void dispose() {
 	graphics2d.dispose();
+	
+}
+
+public void drawPoint(int x, int y, Paint paint) {
+	if(paint.isAntiAlias()){
+		graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	}
+	else{
+		graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+	}
+//    if(paint.mStyle == Paint.Style.FILL){
+//    	graphics2d.fillRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+//	}
+//	else if(paint.mStyle == Paint.Style.STROKE){
+//		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+//		graphics2d.drawRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+//	}
+//	else if(paint.mStyle == Paint.Style.FILL_AND_STROKE){
+//		graphics2d.setStroke(new BasicStroke(paint.mStrokeWidth));
+//		graphics2d.drawRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+//		graphics2d.fillRect((int)left, (int)top, (int)(right-left), (int)(bottom-top));
+//	}
+	graphics2d.setColor(paint.mColor);
+	graphics2d.drawLine(x, y, x, y);
 	
 }
 
