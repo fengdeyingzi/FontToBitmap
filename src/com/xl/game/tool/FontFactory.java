@@ -22,7 +22,7 @@ import android.graphics.Canvas;
 public class FontFactory {
 	String text;
 	//字体目录
-	static String font_path = "D:\\workspace\\FontToBitmap"+File.separatorChar+"gb16_mrpoid.uc2";
+	static String font_path = "gb16_mrpoid.uc2";
 	
 	public FontFactory(String text){
 		this.text = dereplication_old(text);
@@ -66,9 +66,16 @@ public class FontFactory {
 	//通过$FF 编码列表生成字体图片
 	public static void makeFontBitmap(String outDir,String text_unicode) throws FileNotFoundException{
 		String[] list = text_unicode.split(",");
+		if(!new File(outDir).exists()){
+			new File(outDir).mkdir();
+		}
 		SkyFontTool fontTool = new SkyFontTool(new RandomAccessFile(font_path, "r"));
 		for(int i=0;i<list.length;i++){
-			String text_u = getString_u(list[i].toCharArray());
+			String text_u = list[i];
+			if(list[i].startsWith("$")){
+				text_u = getString_u(list[i].toCharArray());
+			}
+
 			char c = text_u.charAt(0);
 			
 			outChar(fontTool, outDir+File.separator+list[i]+".png", c);
@@ -83,6 +90,7 @@ public class FontFactory {
 	private static int outChar(SkyFontTool fontTool, String outPath, char c){
 		Bitmap bitmap = Bitmap.createBitmap(16, 16, Bitmap.Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
+		canvas.drawColor(0xffffffff);
 		fontTool.setCanvas(canvas);
 		fontTool.xl_font_sky16_drawChar((char)c,0,0,0xff000000);
 		FileOutputStream out;

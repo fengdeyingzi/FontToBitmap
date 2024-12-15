@@ -23,7 +23,7 @@ public class DrawSkyFontView extends View{
 	
 	
 	//字体目录
-	String font_path = "D:\\workspace\\FontToBitmap"+File.separatorChar+"gb16_mrpoid.uc2";
+	String font_path = "gb16_mrpoid.uc2";
 	
 	//导出目录
 	String out_path = "D:\\Download\\";
